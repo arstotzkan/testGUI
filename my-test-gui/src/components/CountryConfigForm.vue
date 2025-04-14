@@ -35,3 +35,11 @@
     </div>
   </form>
 </template>
+
+<script>
+export default {
+  props: {
+    config: Object
+  }
+}
+</script>
