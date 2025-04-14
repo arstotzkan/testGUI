@@ -27,7 +27,7 @@ onMounted(async () => {
     <ul>
       <li v-for="locationConfig in locationSubconfigs">
         <RouterLink 
-          :to="`/check-organization-country-config?org=${locationConfig.name}&country=${locationConfig.country}`" 
+          :to="`/update-organization-location-config?org=${locationConfig.name}&country=${locationConfig.country}&loc=${locationConfig.location}`" 
           class="card-text"
         >
           {{ locationConfig.name }} - {{locationConfig.country}} - {{locationConfig.location}}
@@ -38,7 +38,7 @@ onMounted(async () => {
     <div class="d-flex justify-content-between">
       <RouterLink :to="`/check-organization-config?org=${organization}`"> Go back </RouterLink>
       <RouterLink :to="'/'"> Create Location Configuration [TODO] </RouterLink>
-      <RouterLink :to="'/'"> Edit Organization Country Configuration [TODO] </RouterLink>
+      <RouterLink :to="`/update-organization-country-config?org=${organization}&country=${country}`"> Edit Organization Country Configuration</RouterLink>
     </div>
   </div>
 </template>
