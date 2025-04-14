@@ -43,7 +43,7 @@ app.get('/api/get-location-config', (req, res) => {
   })
 })
 
-app.get('/api/get-organization-configs', (req, res) => {
+app.get('/api/get-organizations', (req, res) => {
   res.send([
     {
       "name": "Organization 1",
@@ -64,7 +64,7 @@ app.get('/api/get-organization-configs', (req, res) => {
   ])
 })
 
-app.get('/api/get-organization-country-subconfigs', (req, res) => {
+app.get('/api/get-organization-country-configs', (req, res) => {
   res.send([
     {
       "name": "Organization 1",
@@ -87,7 +87,7 @@ app.get('/api/get-organization-country-subconfigs', (req, res) => {
   ])
 })
 
-app.get('/api/get-organization-location-subconfigs', (req, res) => {
+app.get('/api/get-organization-location-configs', (req, res) => {
   res.send([
     {
       "name": "Organization 1",
@@ -112,6 +112,7 @@ app.get('/api/get-organization-location-subconfigs', (req, res) => {
   ])
 })
 
+//TODO UPDATE OR CREATE
 app.post("/api/update-organization-config", (req, res) => {})
 app.post("/api/update-country-config", (req, res) => {})
 app.post("/api/update-location-config", (req, res) => {})
