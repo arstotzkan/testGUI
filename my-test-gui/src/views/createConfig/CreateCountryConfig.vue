@@ -61,7 +61,7 @@
       <CountryConfigForm v-model="config" />
       <hr>
       <div class="d-flex justify-content-between">
-        <a href="" @click="$router.back()">Go Back </a>
+        <RouterLink :to="`/check-organization-config?id=${parent}`"> Go back </RouterLink>
         <button class="btn btn-primary" type="submit">Create</button>
       </div>
       <div v-if="success" class="alert alert-success text-center my-2" role="alert">
