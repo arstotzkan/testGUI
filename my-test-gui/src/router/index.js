@@ -27,6 +27,7 @@ const routes = [
     { path: '/update-organization-country-config', component: UpdateCountryConfig },
     { path: '/update-organization-location-config', component: UpdateLocationConfig },
 
+    { path: '/:pathMatch(.*)*', component: NotFound}
 ]
   
 const router = createRouter({
