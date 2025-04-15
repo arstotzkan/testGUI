@@ -14,6 +14,7 @@ const success = ref(false)
 const error = ref(null)
 const config = ref({})
 const goBackLink = ref(`/check-organization-country-config?id=${id}`)
+const deleted = ref(false)
 
 onMounted(async () => {
   try {
@@ -53,6 +54,7 @@ async function deleteConfiguration() {
     console.log('Posted successfully:', result)
     success.value = 'Configuration deleted'
     goBackLink.value = `/check-organization-config?id=${config.value.organization_configuration_id}`
+    deleted.value = true
   } catch (err) {
     console.error('Failed to post:', err)
     error.value = err.message
@@ -69,7 +71,7 @@ async function deleteConfiguration() {
       <hr />
       <div class="d-flex justify-content-end">
         <RouterLink class="btn btn-secondary mx-2" :to="goBackLink"> Go back </RouterLink>
-        <button class="btn btn-primary mx-2" type="button" @click="handleSubmit('submit')">
+        <button class="btn btn-primary mx-2" type="button" :disabled="deleted"  @click="handleSubmit('submit')">
           Update
         </button>
         <button class="btn btn-danger mx-2" type="button" @click="handleSubmit('delete')">
