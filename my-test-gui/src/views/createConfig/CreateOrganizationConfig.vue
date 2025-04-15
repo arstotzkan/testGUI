@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import OrganizationConfigForm from '../../components/OrganizationConfigForm.vue'
-import {createOrganizationConfig } from '../../services/userServices.js'
+import { createOrganizationConfig } from '../../services/userServices.js'
 
 const success = ref(false)
 const error = ref(null)

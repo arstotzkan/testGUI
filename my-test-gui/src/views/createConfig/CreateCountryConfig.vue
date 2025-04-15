@@ -31,7 +31,9 @@ onMounted(async () => {
       help_url: parentConfig.help_url,
       help_text: parentConfig.help_text,
     }
-  } catch (err) {console.error(err)}
+  } catch (err) {
+    console.error(err)
+  }
 })
 
 const handleSubmit = async () => {
