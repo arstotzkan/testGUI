@@ -6,9 +6,10 @@
 
   const route = useRoute();
   const id = route.query.id
-  
-    
+  const success = ref(false);
+  const error = ref(null); 
   const config = ref({});
+
   onMounted(async () => {
     try {
       const response = await getLocationConfig(id);
@@ -20,11 +21,16 @@
 
   
   const handleSubmit = async () => {
+    success.value = false
+    error.value = null
+
     try {
       const result = await updateLocationConfig(config.value)
       console.log('Posted successfully:', result)
+      success.value = true
     } catch (err) {
       console.error('Failed to post:', err)
+      error.value = err.message
     }
   }
 
@@ -41,7 +47,13 @@
       <hr>
       <div class="d-flex justify-content-between">
         <a href="" @click="$router.back()">Go Back </a>
-        <button class="btn btn-primary" type="submit"> Update [TODO MESSAGE]</button>
+        <button class="btn btn-primary" type="submit"> Update</button>
+      </div>
+      <div v-if="success" class="alert alert-success text-center my-2" role="alert">
+        Configuration updated
+      </div>
+      <div v-if="error" class="alert alert-danger text-center my-2" role="alert">
+        {{error}}
       </div>
     </form>
   </div>
