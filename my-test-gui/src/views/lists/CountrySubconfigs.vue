@@ -1,9 +1,10 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import {getOrganizationCountryConfigs} from "../../services/userServices.js";
+import {getOrganizationConfig, getOrganizationCountryConfigs} from "../../services/userServices.js";
 
 const countrySubconfigs = ref([]);
+const currentConfigName = ref("")
 const route = useRoute();
 const id = route.query.id
 
@@ -14,13 +15,20 @@ onMounted(async () => {
   } catch (err) {
     countrySubconfigs.value = [];
   } 
+
+    try {
+      const currentConfig = await getOrganizationConfig(id);
+      currentConfigName.value = currentConfig.data[0].organization;
+    } catch (err) {
+      currentConfigName.value = "N/A";
+    }
 });
 </script>
 
 <template>
   <div class="card-body">
     <h3>
-      Subconfigurations of {{organization}}:
+      Subconfigurations of {{currentConfigName}}:
     </h3>
     <hr>
     <ul v-if="countrySubconfigs.length">
@@ -29,7 +37,7 @@ onMounted(async () => {
           :to="`/check-organization-country-config?id=${countryConfig.id}`" 
           class="card-text"
         >
-          {{ countryConfig.name }} - {{countryConfig.country}}
+          {{countryConfig.country}}
         </RouterLink >
       </li>
     </ul>
