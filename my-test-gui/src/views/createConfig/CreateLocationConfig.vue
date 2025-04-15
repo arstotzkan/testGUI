@@ -58,7 +58,7 @@ const handleSubmit = async () => {
 
 <template>
   <div class="card-body">
-    <h3>Create location configuration</h3>
+    <h3>Create Location Configuration</h3>
     <hr />
     <form @submit.prevent="handleSubmit()">
       <LocationConfigForm v-model="config" />

@@ -37,7 +37,7 @@ const handleSubmit = async () => {
 
 <template>
   <div class="card-body">
-    <h3>Create organization configuration</h3>
+    <h3>Create Organization Configuration</h3>
     <hr />
     <form @submit.prevent="handleSubmit()">
       <OrganizationConfigForm v-model="config" />

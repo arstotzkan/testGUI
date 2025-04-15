@@ -69,7 +69,7 @@ async function deleteConfiguration() {
 
 <template>
   <div class="card-body">
-    <h3>Update country configuration</h3>
+    <h3>Update Country Configuration</h3>
     <hr />
     <form @submit.prevent="handleSubmit('submit')">
       <CountryConfigForm v-model="config" />
