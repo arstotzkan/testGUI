@@ -6,6 +6,7 @@ const props = defineProps({
 
 // Create a reactive copy of config to bind to form inputs
 const form = reactive({
+  id: '',
   organization: '',
   title: '',
   favourite_brand: '',
