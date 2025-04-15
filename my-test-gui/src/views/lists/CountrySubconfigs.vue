@@ -17,6 +17,7 @@ onMounted(async () => {
     countrySubconfigs.value = response.data
   } catch (err) {
     countrySubconfigs.value = []
+    console.error(err)
   }
 
   try {
@@ -24,6 +25,7 @@ onMounted(async () => {
     currentConfigName.value = currentConfig.data[0].organization
   } catch (err) {
     currentConfigName.value = 'N/A'
+    console.error(err)
   }
 })
 </script>

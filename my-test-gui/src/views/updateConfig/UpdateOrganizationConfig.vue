@@ -21,6 +21,7 @@ onMounted(async () => {
     config.value = response.data[0]
   } catch (err) {
     config.value = {}
+    console.error(err)
   }
 })
 

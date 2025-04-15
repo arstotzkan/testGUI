@@ -15,6 +15,7 @@ onMounted(async () => {
     locationSubconfigs.value = response.data
   } catch (err) {
     locationSubconfigs.value = []
+    console.error(err)
   }
 
   try {
@@ -24,6 +25,7 @@ onMounted(async () => {
   } catch (err) {
     currentConfigName.value = 'N/A'
     goBackLink.value = '/'
+    console.error(err)
   }
 })
 </script>

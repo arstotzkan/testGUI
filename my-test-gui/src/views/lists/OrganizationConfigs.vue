@@ -9,6 +9,7 @@ onMounted(async () => {
     organizations.value = response.data
   } catch (err) {
     organizations.value = []
+    console.error(err)
   }
 })
 </script>

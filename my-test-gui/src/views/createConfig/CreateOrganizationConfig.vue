@@ -1,11 +1,8 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 import OrganizationConfigForm from '../../components/OrganizationConfigForm.vue'
-import { getOrganizationConfig, createOrganizationConfig } from '../../services/userServices.js'
+import {createOrganizationConfig } from '../../services/userServices.js'
 
-const route = useRoute()
-const id = route.query.id
 const success = ref(false)
 const error = ref(null)
 const config = ref({
