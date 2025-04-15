@@ -38,7 +38,7 @@
 <template>
   <div class="card-body">
     <h3>
-      Update Configuration of {{config.country}}:
+      Update Configuration of {{config.country}}
     </h3>
     <hr>
     <form @submit.prevent="handleSubmit">
