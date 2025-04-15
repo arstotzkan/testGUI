@@ -29,7 +29,7 @@ const handleSubmit = async (action) => {
   success.value = false
   error.value = null
   
-  if (!config.value.country){
+  if (!config.value.location){
     error.value = "Add country value"
     return
   }
