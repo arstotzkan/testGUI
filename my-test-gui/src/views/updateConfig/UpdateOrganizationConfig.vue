@@ -5,13 +5,13 @@
   import {getOrganizationConfig} from "../../services/userServices.js";
 
   const route = useRoute();
-  const organization = route.query.org
+  const id = route.query.id
   
   const config = ref({});
   onMounted(async () => {
     try {
-      const response = await getOrganizationConfig(organization);
-      config.value = response.data;
+      const response = await getOrganizationConfig(id);
+      config.value = response.data[0];
     } catch (err) {
       config.value = {};
     } 
@@ -21,7 +21,7 @@
 <template>
   <div class="card-body">
     <h3>
-      Update Configuration of {{organization}}:
+      Update Configuration of {{config.organization}}:
     </h3>
     <hr>
     <OrganizationConfigForm :config="config" />

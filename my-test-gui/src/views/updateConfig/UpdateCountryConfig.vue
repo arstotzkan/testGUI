@@ -5,14 +5,13 @@
   import {getCountryConfig} from "../../services/userServices.js";
 
   const route = useRoute();
-  const organization = route.query.org
-  const country = route.query.country
+  const id = route.query.id
 
   const config = ref({});
   onMounted(async () => {
     try {
-      const response = await getCountryConfig(organization, country);
-      config.value = response.data;
+      const response = await getCountryConfig(id);
+      config.value = response.data[0];
     } catch (err) {
       config.value = {};
     } 
@@ -22,7 +21,7 @@
 <template>
   <div class="card-body">
     <h3>
-      Update Configuration of {{organization}} - {{country}}:
+      Update Configuration of {{config.country}}:
     </h3>
     <hr>
     <CountryConfigForm :config="config" />

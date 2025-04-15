@@ -5,16 +5,14 @@
   import {getLocationConfig} from "../../services/userServices.js";
 
   const route = useRoute();
-  const organization = route.query.org
-  const country = route.query.country
-  const location = route.query.loc
+  const id = route.query.id
   
     
   const config = ref({});
   onMounted(async () => {
     try {
-      const response = await getLocationConfig(organization, country, location);
-      config.value = response.data;
+      const response = await getLocationConfig(id);
+      config.value = response.data[0];
     } catch (err) {
       config.value = {};
     } 
@@ -25,7 +23,7 @@
 <template>
   <div class="card-body">
     <h3>
-      Update Configuration of {{organization}} - {{country}} - {{location}}:
+      Update Configuration of {{config.location}}:
     </h3>
     <hr>
     <LocationConfigForm :config="config" />
