@@ -7,6 +7,7 @@ const locationSubconfigs = ref([]);
 const currentConfigName = ref("")
 const route = useRoute();
 const id = route.query.id
+const goBackLink = ref("");
 
 onMounted(async () => {
   try {
@@ -19,8 +20,10 @@ onMounted(async () => {
   try {
     const currentConfig = await getCountryConfig(id);
     currentConfigName.value = currentConfig.data[0].country;
+    goBackLink.value = `/check-organization-config?id=${currentConfig.data[0].organization_configuration_id}`;
   } catch (err) {
     currentConfigName.value = "N/A";
+    goBackLink.value = "/";
   } 
 
 });
@@ -45,7 +48,7 @@ onMounted(async () => {
     <span v-else> No configurations added</span>
     <hr>
     <div class="d-flex justify-content-between">
-      <RouterLink :to="`/check-organization-config?id=${id}`"> Go back </RouterLink>
+      <RouterLink :to="`${goBackLink}`"> Go back </RouterLink>
       <RouterLink :to="'/'"> Create Location Configuration [TODO] </RouterLink>
       <RouterLink :to="`/update-organization-country-config?id=${id}`"> Edit Organization Country Configuration</RouterLink>
     </div>
