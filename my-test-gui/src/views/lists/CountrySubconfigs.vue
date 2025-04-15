@@ -55,7 +55,7 @@ onMounted(async () => {
         Create Country Configuration
       </RouterLink>
       <RouterLink class="btn btn-primary mx-2" :to="`/update-organization-config?id=${id}`">
-        Edit Organization Configuration
+        Edit Organization Configuration ({{currentConfigName}})
       </RouterLink>
     </div>
   </div>
