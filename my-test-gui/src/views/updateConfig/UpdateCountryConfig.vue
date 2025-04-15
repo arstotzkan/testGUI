@@ -30,8 +30,8 @@ const handleSubmit = async (action) => {
   success.value = false
   error.value = null
 
-  if (!config.value.country){
-    error.value = "Add country value"
+  if (!config.value.country) {
+    error.value = 'Add country value'
     return
   }
 
@@ -69,14 +69,19 @@ async function deleteConfiguration() {
 
 <template>
   <div class="card-body">
-    <h3>Update Configuration of {{ config.country }}</h3>
+    <h3>Update country configuration</h3>
     <hr />
     <form @submit.prevent="handleSubmit('submit')">
       <CountryConfigForm v-model="config" />
       <hr />
       <div class="d-flex justify-content-end">
         <RouterLink class="btn btn-secondary mx-2" :to="goBackLink"> Go back </RouterLink>
-        <button class="btn btn-primary mx-2" type="button" :disabled="deleted"  @click="handleSubmit('submit')">
+        <button
+          class="btn btn-primary mx-2"
+          type="button"
+          :disabled="deleted"
+          @click="handleSubmit('submit')"
+        >
           Update
         </button>
         <button class="btn btn-danger mx-2" type="button" @click="handleSubmit('delete')">

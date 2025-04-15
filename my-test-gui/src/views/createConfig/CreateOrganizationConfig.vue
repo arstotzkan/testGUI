@@ -19,11 +19,11 @@ const handleSubmit = async () => {
   success.value = false
   error.value = null
 
-  if (!config.value.organization){
-    error.value = "Add country value"
+  if (!config.value.organization) {
+    error.value = 'Add country value'
     return
   }
-  
+
   try {
     const result = await createOrganizationConfig(config.value)
     console.log('Posted successfully:', result)

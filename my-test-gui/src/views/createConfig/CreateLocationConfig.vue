@@ -40,11 +40,11 @@ const handleSubmit = async () => {
   success.value = false
   error.value = null
 
-  if (!config.value.location){
-    error.value = "Add country value"
+  if (!config.value.location) {
+    error.value = 'Add country value'
     return
   }
-  
+
   try {
     const result = await createLocationConfig(config.value)
     console.log('Posted successfully:', result)

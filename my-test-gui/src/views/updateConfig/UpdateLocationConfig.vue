@@ -28,9 +28,9 @@ onMounted(async () => {
 const handleSubmit = async (action) => {
   success.value = false
   error.value = null
-  
-  if (!config.value.location){
-    error.value = "Add country value"
+
+  if (!config.value.location) {
+    error.value = 'Add country value'
     return
   }
 
@@ -67,7 +67,7 @@ async function deleteConfiguration() {
 
 <template>
   <div class="card-body">
-    <h3>Update Configuration of {{ config.location }}</h3>
+    <h3>Update location configuration</h3>
     <hr />
     <form @submit.prevent="handleSubmit('submit')">
       <LocationConfigForm v-model="config" />
@@ -79,7 +79,12 @@ async function deleteConfiguration() {
         >
           Go back
         </RouterLink>
-        <button class="btn btn-primary mx-2" type="button" :disabled="deleted" @click="handleSubmit('submit')">
+        <button
+          class="btn btn-primary mx-2"
+          type="button"
+          :disabled="deleted"
+          @click="handleSubmit('submit')"
+        >
           Update
         </button>
         <button class="btn btn-danger mx-2" type="button" @click="handleSubmit('delete')">
