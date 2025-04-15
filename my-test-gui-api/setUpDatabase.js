@@ -2,7 +2,7 @@ function createOrganizationTable(db){
     db.run(`
         CREATE TABLE IF NOT EXISTS OrganizationConfig (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        organization TEXT,
+        organization TEXT NOT NULL UNIQUE,
         title TEXT,
         favourite_brand TEXT,
         main_button_text TEXT,
@@ -23,7 +23,7 @@ function createCountryTable(db){
     db.run(`
         CREATE TABLE IF NOT EXISTS CountryConfig (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          country TEXT,
+          country TEXT NOT NULL UNIQUE,
           title TEXT,
           favourite_brand TEXT,
           main_button_text TEXT,
@@ -46,7 +46,7 @@ function createLocationTable(db){
     db.run(`
         CREATE TABLE IF NOT EXISTS LocationConfig (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          location TEXT,
+          location TEXT NOT NULL UNIQUE,
           title TEXT,
           favourite_brand TEXT,
           main_button_text TEXT,
