@@ -2,13 +2,14 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import OrganizationConfigForm from '../../components/OrganizationConfigForm.vue'
-import { getOrganizationConfig, updateOrganizationConfig } from '../../services/userServices.js'
+import { getOrganizationConfig, updateOrganizationConfig, deleteOrganizationConfig } from '../../services/userServices.js'
 
 const route = useRoute()
 const id = route.query.id
 const success = ref(false)
 const error = ref(null)
 const config = ref({})
+const goBackLink = ref(`/check-organization-config?id=${config.id}`)
 
 onMounted(async () => {
   try {
@@ -19,14 +20,34 @@ onMounted(async () => {
   }
 })
 
-const handleSubmit = async () => {
+const handleSubmit = async (action) => {
   success.value = false
   error.value = null
 
+  if (action === "submit"){
+    await updateConfiguration()
+  } else if (action === "delete"){
+    await deleteConfiguration()
+  }
+}
+
+async function updateConfiguration() {
   try {
     const result = await updateOrganizationConfig(config.value)
     console.log('Posted successfully:', result)
-    success.value = true
+    success.value = "Configuration updated"
+  } catch (err) {
+    console.error('Failed to post:', err)
+    error.value = err.message
+  }
+}
+
+async function deleteConfiguration() {
+    try {
+    const result = await deleteOrganizationConfig(config.value.id)
+    console.log('Posted successfully:', result)
+    success.value = "Configuration deleted"
+    goBackLink.value = "/"
   } catch (err) {
     console.error('Failed to post:', err)
     error.value = err.message
@@ -38,20 +59,21 @@ const handleSubmit = async () => {
   <div class="card-body">
     <h3>Update Configuration of {{ config.organization }}</h3>
     <hr />
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit('submit')">
       <OrganizationConfigForm v-model="config" />
       <hr />
       <div class="d-flex justify-content-end">
         <RouterLink
           class="btn btn-secondary mx-2"
-          :to="`/check-organization-config?id=${config.id}`"
+          :to="goBackLink"
         >
           Go back
         </RouterLink>
-        <button class="btn btn-primary mx-2" type="submit">Update</button>
+        <button class="btn btn-primary mx-2" type="button" @click="handleSubmit('submit')">Update</button>
+        <button class="btn btn-danger mx-2" type="button" @click="handleSubmit('delete')">Delete</button>
       </div>
       <div v-if="success" class="alert alert-success text-center my-2" role="alert">
-        Configuration updated
+        {{success}}
       </div>
       <div v-if="error" class="alert alert-danger text-center my-2" role="alert">
         {{ error }}

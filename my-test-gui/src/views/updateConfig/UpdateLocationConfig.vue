@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import LocationConfigForm from '../../components/LocationConfigForm.vue'
 import { useRoute } from 'vue-router'
-import { getLocationConfig, updateLocationConfig } from '../../services/userServices.js'
+import { getLocationConfig, updateLocationConfig, deleteLocationConfig } from '../../services/userServices.js'
 
 const route = useRoute()
 const id = route.query.id
@@ -19,14 +19,33 @@ onMounted(async () => {
   }
 })
 
-const handleSubmit = async () => {
+const handleSubmit = async (action) => {
   success.value = false
   error.value = null
+  
+  if (action === "submit"){
+    await updateConfiguration()
+  } else if (action === "delete"){
+    await deleteConfiguration()
+  }
+}
 
+async function updateConfiguration() {
   try {
     const result = await updateLocationConfig(config.value)
     console.log('Posted successfully:', result)
-    success.value = true
+    success.value = "Configuration updated"
+  } catch (err) {
+    console.error('Failed to post:', err)
+    error.value = err.message
+  }
+}
+
+async function deleteConfiguration() {
+    try {
+    const result = await deleteLocationConfig(config.value.id)
+    console.log('Posted successfully:', result)
+    success.value = "Configuration deleted"
   } catch (err) {
     console.error('Failed to post:', err)
     error.value = err.message
@@ -38,7 +57,7 @@ const handleSubmit = async () => {
   <div class="card-body">
     <h3>Update Configuration of {{ config.location }}</h3>
     <hr />
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit('submit')">
       <LocationConfigForm v-model="config" />
       <hr />
       <div class="d-flex justify-content-end">
@@ -48,10 +67,11 @@ const handleSubmit = async () => {
         >
           Go back
         </RouterLink>
-        <button class="btn btn-primary mx-2" type="submit">Update</button>
+        <button class="btn btn-primary mx-2" type="button" @click="handleSubmit('submit')">Update</button>
+        <button class="btn btn-danger mx-2" type="button" @click="handleSubmit('delete')">Delete</button>
       </div>
       <div v-if="success" class="alert alert-success text-center my-2" role="alert">
-        Configuration updated
+        {{success}}
       </div>
       <div v-if="error" class="alert alert-danger text-center my-2" role="alert">
         {{ error }}
