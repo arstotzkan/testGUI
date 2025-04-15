@@ -23,3 +23,33 @@ export function getOrganizationCountryConfigs(id) {
 export function getCountryLocationConfigs(id) {
     return api.get(`/api/get-organization-location-configs?id=${id}`);
 }
+
+export async function updateOrganizationConfig(data){
+    try {
+        const response = await api.post('/api/update-organization-config', data)
+        return response.data
+    } catch (error) {
+        console.error('Error posting config:', error)
+        throw error
+    } 
+}
+
+export async function updateCountryConfig(data){
+    // try {
+        const response = await api.post('/api/update-country-config', data)
+        return response.data
+    // } catch (error) {
+    //     console.error('Error posting config:', error)
+    //     throw error
+    // } 
+}
+
+export async function updateLocationConfig(data){
+    try {
+        const response = await api.post('/api/update-location-config', data)
+        return response.data
+    } catch (error) {
+        console.error('Error posting config:', error)
+        throw error
+    } 
+}
