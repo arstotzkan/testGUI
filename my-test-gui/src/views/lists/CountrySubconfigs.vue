@@ -45,7 +45,7 @@ onMounted(async () => {
     <hr>
     <div class="d-flex justify-content-between">
       <RouterLink :to="'/'"> Go back </RouterLink>
-      <RouterLink :to="'/'"> Create Country Configuration [TODO] </RouterLink>
+      <RouterLink :to="`/create-organization-country-config?parent=${id}`"> Create Country Configuration </RouterLink>
       <RouterLink :to="`/update-organization-config?id=${id}`"> Edit Organization Configuration </RouterLink>
     </div>
   </div>

@@ -27,7 +27,7 @@ onMounted(async () => {
     <span v-else> No configurations added</span>
     <hr>
     <div class="d-flex justify-content-between">
-      <RouterLink :to="'/'"> Create Organization Configuration [TODO] </RouterLink>
+      <RouterLink :to="'/create-organization-config'"> Create Organization Configuration</RouterLink>
     </div>
   </div>
 </template>
