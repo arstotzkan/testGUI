@@ -40,6 +40,11 @@ const handleSubmit = async () => {
   success.value = false
   error.value = null
 
+  if (!config.value.country){
+    error.value = "Add country value"
+    return
+  }
+  
   try {
     const result = await createLocationConfig(config.value)
     console.log('Posted successfully:', result)
@@ -55,7 +60,7 @@ const handleSubmit = async () => {
   <div class="card-body">
     <h3>Create location configuration</h3>
     <hr />
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit()">
       <LocationConfigForm v-model="config" />
       <hr />
       <div class="d-flex justify-content-end">

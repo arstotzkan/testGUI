@@ -30,6 +30,11 @@ const handleSubmit = async (action) => {
   success.value = false
   error.value = null
 
+  if (!config.value.country){
+    error.value = "Add country value"
+    return
+  }
+
   if (action === 'submit') {
     await updateConfiguration()
   } else if (action === 'delete') {
