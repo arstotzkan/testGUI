@@ -197,6 +197,39 @@ app.post("/api/create-location-config", (req, res) => {
   });
 })
 
+app.delete("/api/delete-organization-config", (req, res) => {
+  const { id } = req.body;
+
+  const query = `DELETE FROM OrganizationConfig WHERE id = ?`;
+
+  db.run(query, [id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Organization deleted', changes: this.changes });
+  });
+});
+
+app.delete("/api/delete-country-config", (req, res) => {
+  const { id } = req.body;
+
+  const query = `DELETE FROM CountryConfig WHERE id = ?`;
+
+  db.run(query, [id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Country deleted', changes: this.changes });
+  });
+});
+
+app.delete("/api/delete-location-config", (req, res) => {
+  const { id } = req.body;
+
+  const query = `DELETE FROM LocationConfig WHERE id = ?`;
+
+  db.run(query, [id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Location deleted', changes: this.changes });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
