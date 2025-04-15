@@ -2,7 +2,7 @@
   import { onMounted, ref } from 'vue';
   import CountryConfigForm from "../../components/CountryConfigForm.vue";
   import { useRoute } from 'vue-router';
-  import {getCountryConfig} from "../../services/userServices.js";
+  import {getCountryConfig, updateCountryConfig} from "../../services/userServices.js";
 
   const route = useRoute();
   const id = route.query.id
@@ -16,6 +16,16 @@
       config.value = {};
     } 
   });
+
+  const handleSubmit = async () => {
+    try {
+      const result = await updateCountryConfig(config.value)
+      console.log('Posted successfully:', result)
+    } catch (err) {
+      console.error('Failed to post:', err)
+    }
+  }
+
 </script>
 
 <template>
@@ -24,11 +34,13 @@
       Update Configuration of {{config.country}}:
     </h3>
     <hr>
-    <CountryConfigForm :config="config" />
-    <hr>
-    <div class="d-flex justify-content-between">
-      <a href="" @click="$router.go(-1)">Go Back </a>
-      <a href=""> Update [TODO]</a>
-    </div>
+    <form @submit.prevent="handleSubmit">
+      <CountryConfigForm v-model="config" />
+      <hr>
+      <div class="d-flex justify-content-between">
+        <a href="" @click="$router.back()">Go Back </a>
+        <button class="btn btn-primary" type="submit"> Update [TODO MESSAGE]</button>
+      </div>
+    </form>
   </div>
 </template>

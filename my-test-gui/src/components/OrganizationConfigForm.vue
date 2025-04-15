@@ -1,10 +1,11 @@
 <script setup>
 import { reactive, toRefs, watch } from 'vue'
 const props = defineProps({
-  config: Object
+  modelValue: Object
 })
 
-// Create a reactive copy of config to bind to form inputs
+const emit = defineEmits(['update:modelValue']);
+
 const form = reactive({
   id: '',
   organization: '',
@@ -15,17 +16,24 @@ const form = reactive({
   help_text: ''
 })
 
-// Watch for props.config updates and sync values
-watch(() => props.config, (newConfig) => {
+watch(() => props.modelValue, (newConfig) => {
       if (newConfig) {
         Object.assign(form, newConfig)
       }
     }, {immediate: true}
 )
+
+watch(
+  form,
+  (newForm) => {
+    emit('update:modelValue', newForm);
+  },
+  { deep: true }
+);
 </script>
 
 <template>
-  <form>
+  <div>
     <div class="form-group mb-2">
       <label for="organization">Organization</label>
       <input class="form-control" id="organization" v-model="form.organization">
@@ -55,6 +63,6 @@ watch(() => props.config, (newConfig) => {
       <label for="helpText">Help Text</label>
       <input class="form-control" id="helpText" v-model="form.help_text">
     </div>
-  </form>
+  </div>
 </template>
 
