@@ -1,5 +1,25 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
+const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
+
+const dbFilePath = "./database.db";
+const dbExists = fs.existsSync(dbFilePath);
+
+const db = new sqlite3.Database(dbFilePath, (err) => {
+  if (err) {
+    console.error('Error opening database:', err.message);
+  } else {
+    if (!dbExists) {
+      console.log('Database file created.');
+    } else {
+      console.log('Database file already exists!');
+    }
+  }
+});
+
+
+
 const app = express()
 const port = 5174
 
