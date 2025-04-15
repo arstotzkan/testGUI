@@ -36,7 +36,7 @@ onMounted(async () => {
     </h3>
     <hr>
     <ul v-if="locationSubconfigs.length">
-      <li v-for="locationConfig in locationSubconfigs">
+      <li v-for="locationConfig in locationSubconfigs" :key="locationConfig.id">
         <RouterLink 
           :to="`/update-organization-location-config?id=${locationConfig.id}`" 
           class="card-text"

@@ -32,7 +32,7 @@ onMounted(async () => {
     </h3>
     <hr>
     <ul v-if="countrySubconfigs.length">
-      <li v-for="countryConfig in countrySubconfigs">
+      <li v-for="countryConfig in countrySubconfigs" :key="countryConfig.id">
         <RouterLink 
           :to="`/check-organization-country-config?id=${countryConfig.id}`" 
           class="card-text"

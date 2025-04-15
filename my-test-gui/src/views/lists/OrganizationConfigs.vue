@@ -20,7 +20,7 @@ onMounted(async () => {
     </h3>
     <hr>
     <ul v-if="organizations.length">
-      <li v-for="org in organizations">
+      <li v-for="org in organizations" :key="org.id">
         <RouterLink :to="`/check-organization-config?id=${org.id}`" class="card-text">{{ org.organization }}</RouterLink >
       </li>
     </ul>
