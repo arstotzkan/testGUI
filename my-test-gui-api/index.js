@@ -25,6 +25,7 @@ const app = express()
 const port = 5174
 
 app.use(cors())
+app.use(express.json())
 
 app.get('/api/get-organization-config', (req, res) => {
   let query = `SELECT * FROM OrganizationConfig WHERE id = ?`;
