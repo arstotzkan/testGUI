@@ -53,3 +53,33 @@ export async function updateLocationConfig(data){
         throw error
     } 
 }
+export async function createOrganizationConfig(data){
+    try {
+        const response = await api.post('/api/create-organization-config', data)
+        return response.data
+    } catch (error) {
+        console.error('Error posting config:', error)
+        throw error
+    } 
+}
+
+export async function createCountryConfig(data){
+    try {
+        const response = await api.post('/api/create-country-config', data)
+        return response.data
+    } catch (error) {
+        console.error('Error posting config:', error)
+        throw error
+    } 
+}
+
+export async function createLocationConfig(data){
+    try {
+        const response = await api.post('/api/create-location-config', data)
+        return response.data
+    } catch (error) {
+        console.error('Error posting config:', error)
+        throw error
+    } 
+}
+
