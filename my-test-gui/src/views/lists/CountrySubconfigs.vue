@@ -28,7 +28,7 @@ onMounted(async () => {
 <template>
   <div class="card-body">
     <h3>
-      Subconfigurations of {{currentConfigName}}:
+      Subconfigurations of {{currentConfigName}}
     </h3>
     <hr>
     <ul v-if="countrySubconfigs.length">

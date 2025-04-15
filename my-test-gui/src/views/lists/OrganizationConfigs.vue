@@ -16,7 +16,7 @@ onMounted(async () => {
 <template>
   <div class="card-body">
     <h3>
-      Organizations:
+      Organizations
     </h3>
     <hr>
     <ul v-if="organizations.length">
