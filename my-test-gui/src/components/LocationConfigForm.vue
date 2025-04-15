@@ -39,7 +39,7 @@ watch(
   <div>
     <div class="form-group mb-2">
       <label for="location">Location</label>
-      <input class="form-control" id="location" v-model="form.location" />
+      <input class="form-control" id="location" v-model="form.location" required />
     </div>
 
     <div class="form-group mb-2">
