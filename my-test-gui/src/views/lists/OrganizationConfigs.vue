@@ -21,7 +21,7 @@ onMounted(async () => {
     <hr>
     <ul v-if="organizations.length">
       <li v-for="org in organizations">
-        <RouterLink :to="`/check-organization-config?id=${org.id}`" class="card-text">{{ org.name }}</RouterLink >
+        <RouterLink :to="`/check-organization-config?id=${org.id}`" class="card-text">{{ org.organization }}</RouterLink >
       </li>
     </ul>
     <span v-else> No configurations added</span>

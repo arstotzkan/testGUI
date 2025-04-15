@@ -9,7 +9,7 @@ const id = route.query.id
 
 onMounted(async () => {
   try {
-    const response = await getCountryLocationConfigs();
+    const response = await getCountryLocationConfigs(id);
     locationSubconfigs.value = response.data;
   } catch (err) {
     locationSubconfigs.value = [];
@@ -26,7 +26,7 @@ onMounted(async () => {
     <ul v-if="locationSubconfigs.length">
       <li v-for="locationConfig in locationSubconfigs">
         <RouterLink 
-          :to="`/update-organization-location-config?org=${locationConfig.name}&country=${locationConfig.country}&loc=${locationConfig.location}`" 
+          :to="`/update-organization-location-config?id=${id}`" 
           class="card-text"
         >
           {{ locationConfig.name }} - {{locationConfig.country}} - {{locationConfig.location}}
