@@ -44,9 +44,9 @@
     <form @submit.prevent="handleSubmit"> 
       <OrganizationConfigForm v-model="config" />
       <hr>
-      <div class="d-flex justify-content-between">
-        <RouterLink :to="'/'"> Go back </RouterLink>
-        <button class="btn btn-primary" type="submit">Create</button>
+      <div class="d-flex justify-content-end">
+        <RouterLink class="btn btn-secondary mx-2" :to="'/'"> Go back </RouterLink>
+        <button class="btn btn-primary mx-2" type="submit">Create</button>
       </div>
       <div v-if="success" class="alert alert-success text-center my-2" role="alert">
         Configuration created

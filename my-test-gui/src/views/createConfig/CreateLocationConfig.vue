@@ -59,9 +59,9 @@
     <form @submit.prevent="handleSubmit">
       <LocationConfigForm v-model="config" />
       <hr>
-      <div class="d-flex justify-content-between">
-        <RouterLink :to="`/check-organization-country-config?id=${parent}`"> Go back </RouterLink>
-        <button class="btn btn-primary" type="submit">Create</button>
+      <div class="d-flex justify-content-end">
+        <RouterLink class="btn btn-secondary mx-2" :to="`/check-organization-country-config?id=${parent}`"> Go back </RouterLink>
+        <button class="btn btn-primary mx-2" type="submit">Create</button>
       </div>
       <div v-if="success" class="alert alert-success text-center my-2" role="alert">
         Configuration created

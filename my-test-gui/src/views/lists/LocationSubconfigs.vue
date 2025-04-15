@@ -47,10 +47,10 @@ onMounted(async () => {
     </ul>
     <span v-else> No configurations added</span>
     <hr>
-    <div class="d-flex justify-content-between">
-      <RouterLink :to="`${goBackLink}`"> Go back </RouterLink>
-      <RouterLink :to="`/create-organization-location-config?parent=${id}`"> Create Location Configuration</RouterLink>
-      <RouterLink :to="`/update-organization-country-config?id=${id}`"> Edit Organization Country Configuration</RouterLink>
+    <div class="d-flex justify-content-end">
+      <RouterLink class="btn btn-secondary mx-2" :to="`${goBackLink}`"> Go back </RouterLink>
+      <RouterLink class="btn btn-primary mx-2" :to="`/create-organization-location-config?parent=${id}`"> Create Location Configuration</RouterLink>
+      <RouterLink class="btn btn-primary mx-2" :to="`/update-organization-country-config?id=${id}`"> Edit Organization Country Configuration</RouterLink>
     </div>
   </div>
 </template>
