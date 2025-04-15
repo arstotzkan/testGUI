@@ -85,31 +85,30 @@ export async function createLocationConfig(data) {
 
 export async function deleteOrganizationConfig(id) {
   try {
-    const response = await api.delete('/api/delete-organization-config', { data: { id } });
-    return response.data;
+    const response = await api.delete('/api/delete-organization-config', { data: { id } })
+    return response.data
   } catch (error) {
-    console.error('Error deleting organization config:', error);
-    throw error;
+    console.error('Error deleting organization config:', error)
+    throw error
   }
 }
 
 export async function deleteCountryConfig(id) {
   try {
-    const response = await api.delete('/api/delete-country-config', { data: { id } });
-    return response.data;
+    const response = await api.delete('/api/delete-country-config', { data: { id } })
+    return response.data
   } catch (error) {
-    console.error('Error deleting country config:', error);
-    throw error;
+    console.error('Error deleting country config:', error)
+    throw error
   }
 }
 
 export async function deleteLocationConfig(id) {
   try {
-    const response = await api.delete('/api/delete-location-config', { data: { id } });
-    return response.data;
+    const response = await api.delete('/api/delete-location-config', { data: { id } })
+    return response.data
   } catch (error) {
-    console.error('Error deleting location config:', error);
-    throw error;
+    console.error('Error deleting location config:', error)
+    throw error
   }
 }
-
