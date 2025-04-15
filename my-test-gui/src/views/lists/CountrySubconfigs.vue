@@ -5,14 +5,14 @@ import {getOrganizationCountryConfigs} from "../../services/userServices.js";
 
 const countrySubconfigs = ref([]);
 const route = useRoute();
-const organization = route.query.org
+const id = route.query.id
 
 onMounted(async () => {
   try {
-    const response = await getOrganizationCountryConfigs(organization);
+    const response = await getOrganizationCountryConfigs(id);
     countrySubconfigs.value = response.data;
   } catch (err) {
-    countrySubconfigs.value = [{"name": "lol", "country": "la"}];
+    countrySubconfigs.value = [];
   } 
 });
 </script>
@@ -23,21 +23,22 @@ onMounted(async () => {
       Subconfigurations of {{organization}}:
     </h3>
     <hr>
-    <ul>
+    <ul v-if="countrySubconfigs.length">
       <li v-for="countryConfig in countrySubconfigs">
         <RouterLink 
-          :to="`/check-organization-country-config?org=${countryConfig.name}&country=${countryConfig.country}`" 
+          :to="`/check-organization-country-config?id=${countryConfig.id}`" 
           class="card-text"
         >
           {{ countryConfig.name }} - {{countryConfig.country}}
         </RouterLink >
       </li>
     </ul>
+    <span v-else> No configurations added</span>
     <hr>
     <div class="d-flex justify-content-between">
       <RouterLink :to="'/'"> Go back </RouterLink>
       <RouterLink :to="'/'"> Create Country Configuration [TODO] </RouterLink>
-      <RouterLink :to="`/update-organization-config?org=${organization}`"> Edit Organization Configuration </RouterLink>
+      <RouterLink :to="`/update-organization-config?id=${id}`"> Edit Organization Configuration </RouterLink>
     </div>
   </div>
 </template>
