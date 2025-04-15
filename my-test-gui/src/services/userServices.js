@@ -35,13 +35,13 @@ export async function updateOrganizationConfig(data){
 }
 
 export async function updateCountryConfig(data){
-    // try {
+    try {
         const response = await api.post('/api/update-country-config', data)
         return response.data
-    // } catch (error) {
-    //     console.error('Error posting config:', error)
-    //     throw error
-    // } 
+    } catch (error) {
+        console.error('Error posting config:', error)
+        throw error
+    } 
 }
 
 export async function updateLocationConfig(data){
