@@ -13,7 +13,7 @@ const id = route.query.id
 const success = ref(false)
 const error = ref(null)
 const config = ref({})
-const goBackLink = ref(`/check-organization-country-config?id=${config.value.id}`)
+const goBackLink = ref(`/check-organization-country-config?id=${id}`)
 
 onMounted(async () => {
   try {
