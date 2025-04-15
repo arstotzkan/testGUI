@@ -2,13 +2,13 @@
   import { onMounted, ref } from 'vue';
   import CountryConfigForm from "../../components/CountryConfigForm.vue";
   import { useRoute } from 'vue-router';
-  import {getCountryConfig, createCountryConfig} from "../../services/userServices.js";
+  import {getOrganizationConfig, createCountryConfig} from "../../services/userServices.js";
 
   const route = useRoute();
   const parent = route.query.parent
   const success = ref(false);
   const error = ref(null); 
-    const config = ref({
+  const config = ref({
     id: null,
     country: '',
     title: '',
@@ -21,11 +21,17 @@
 
   onMounted(async () => {
     try {
-      const response = await getCountryConfig(id);
-      config.value = response.data[0];
-    } catch (err) {
-      config.value = {};
-    } 
+      const response = await getOrganizationConfig(parent);
+      const parentConfig = response.data[0];
+      config.value = {
+        ...config.value,
+        title: parentConfig.title,
+        favourite_brand: parentConfig.favourite_brand,
+        main_button_text: parentConfig.main_button_text,
+        help_url: parentConfig.help_url,
+        help_text: parentConfig.help_text,
+      };
+    } catch (err) {} 
   });
 
   

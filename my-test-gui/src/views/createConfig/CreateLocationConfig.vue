@@ -2,7 +2,7 @@
   import { onMounted, ref } from 'vue';
   import LocationConfigForm from "../../components/LocationConfigForm.vue";
   import { useRoute } from 'vue-router';
-  import {getLocationConfig, createLocationConfig} from "../../services/userServices.js";
+  import {getCountryConfig, createLocationConfig} from "../../services/userServices.js";
 
   const route = useRoute();
   const parent = route.query.parent
@@ -21,14 +21,19 @@
 
   onMounted(async () => {
     try {
-      const response = await getLocationConfig(id);
-      config.value = response.data[0];
-    } catch (err) {
-      config.value = {};
-    } 
+      const response = await getCountryConfig(parent);
+      const parentConfig = response.data[0];
+      config.value = {
+        ...config.value,
+        title: parentConfig.title,
+        favourite_brand: parentConfig.favourite_brand,
+        main_button_text: parentConfig.main_button_text,
+        help_url: parentConfig.help_url,
+        help_text: parentConfig.help_text,
+      };
+    } catch (err) {} 
   });
 
-  
   const handleSubmit = async () => {
     success.value = false
     error.value = null
