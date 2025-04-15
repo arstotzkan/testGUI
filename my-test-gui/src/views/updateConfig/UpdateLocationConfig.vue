@@ -47,7 +47,7 @@
       <hr>
       <div class="d-flex justify-content-between">
         <a href="" @click="$router.back()">Go Back </a>
-        <button class="btn btn-primary" type="submit"> Update [TODO MESSAGE]</button>
+        <button class="btn btn-primary" type="submit"> Update</button>
       </div>
       <div v-if="success" class="alert alert-success text-center my-2" role="alert">
         Configuration updated

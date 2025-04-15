@@ -102,7 +102,6 @@ app.get('/api/get-organization-location-configs', (req, res) => {
   });
 })
 
-//TODO UPDATE OR CREATE
 app.post("/api/update-organization-config", (req, res) => {
 
   const { title, favourite_brand, main_button_text, help_url, help_text, id } = req.body;
