@@ -78,7 +78,6 @@ app.get('/api/get-organizations', (req, res) => {
 
 app.get('/api/get-organization-country-configs', (req, res) => {
   let query = `SELECT * FROM CountryConfig WHERE organization_configuration_id = ?`;
-  console.log(13131, req.id)
   db.all(query, [req.query.id], (err, rows) => {
     if (err) {
       console.error('Database error:', err.message);
