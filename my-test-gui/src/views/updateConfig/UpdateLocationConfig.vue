@@ -48,7 +48,7 @@ async function updateConfiguration() {
     success.value = 'Configuration updated'
   } catch (err) {
     console.error('Failed to post:', err)
-    error.value = err.message
+    error.value = err.response.data?.error
   }
 }
 
@@ -60,7 +60,7 @@ async function deleteConfiguration() {
     deleted.value = true
   } catch (err) {
     console.error('Failed to post:', err)
-    error.value = err.message
+    error.value = err.response.data?.error
   }
 }
 </script>
