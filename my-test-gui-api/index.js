@@ -104,15 +104,15 @@ app.get('/api/get-organization-location-configs', (req, res) => {
 
 app.post("/api/update-organization-config", (req, res) => {
 
-  const { title, favourite_brand, main_button_text, help_url, help_text, id } = req.body;
+  const { organization, title, favourite_brand, main_button_text, help_url, help_text, id } = req.body;
 
   let query = `
     UPDATE OrganizationConfig
-    SET title = ?, favourite_brand = ?, main_button_text = ?, help_url = ?, help_text = ?
+    SET organization = ?, title = ?, favourite_brand = ?, main_button_text = ?, help_url = ?, help_text = ?
     WHERE id = ?
   `;
 
-  db.run(query, [title, favourite_brand, main_button_text, help_url, help_text, id], function(err) {
+  db.run(query, [organization, title, favourite_brand, main_button_text, help_url, help_text, id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Organization updated', changes: this.changes });
   });
@@ -121,15 +121,15 @@ app.post("/api/update-organization-config", (req, res) => {
 
 app.post("/api/update-country-config", (req, res) => {
 
-  const { title, favourite_brand, main_button_text, help_url, help_text, id } = req.body;
+  const {country, title, favourite_brand, main_button_text, help_url, help_text, id } = req.body;
 
   let query = `
     UPDATE CountryConfig
-    SET title = ?, favourite_brand = ?, main_button_text = ?, help_url = ?, help_text = ?
+    SET country = ?, title = ?, favourite_brand = ?, main_button_text = ?, help_url = ?, help_text = ?
     WHERE id = ?
   `;
 
-  db.run(query, [title, favourite_brand, main_button_text, help_url, help_text, id], function(err) {
+  db.run(query, [country, title, favourite_brand, main_button_text, help_url, help_text, id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Country updated', changes: this.changes });
   });
@@ -138,15 +138,15 @@ app.post("/api/update-country-config", (req, res) => {
 
 app.post("/api/update-location-config", (req, res) => {
 
-  const { title, favourite_brand, main_button_text, help_url, help_text, id } = req.body;
+  const { location, title, favourite_brand, main_button_text, help_url, help_text, id } = req.body;
   
   let query = `
     UPDATE LocationConfig
-    SET title = ?, favourite_brand = ?, main_button_text = ?, help_url = ?, help_text = ?
+    SET location = ?, title = ?, favourite_brand = ?, main_button_text = ?, help_url = ?, help_text = ?
     WHERE id = ?
   `;
 
-  db.run(query, [title, favourite_brand, main_button_text, help_url, help_text, id], function(err) {
+  db.run(query, [location, title, favourite_brand, main_button_text, help_url, help_text, id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Location updated', changes: this.changes });
   });
